@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Q'filo — Chifa y criollo en Getafe | Restaurante peruano de fusión</title>
+  <meta name="description" content="Chifa y criollo en Getafe (Madrid). Restaurante peruano de fusión: el fuego oriental del wok y la sazón criolla en un solo lugar. Arroz chaufa, tallarín saltado, lomo saltado, caldo de gallina y postres de autor." />
+  <meta name="theme-color" content="#301617" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23301617'/%3E%3Ctext x='32' y='45' font-family='Arial Narrow, Arial, sans-serif' font-size='40' font-weight='700' text-anchor='middle' fill='%23bb0e1b'%3EF%3C/text%3E%3C/svg%3E" />
+  <meta name="author" content="Q'filo" />
+
+  <!-- Open Graph / social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Q'filo" />
+  <meta property="og:title" content="Chifa y criollo en Getafe — Restaurante peruano de fusión" />
+  <meta property="og:description" content="El fuego oriental. El corazón criollo. Restaurante peruano de fusión en Getafe: chifa, criollo y postres de autor." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&w=1200&q=80" />
+  <meta property="og:locale" content="es_ES" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!-- Tailwind v4 via CDN: custom theme + components live inline below -->
+  <style type="text/tailwindcss">
+/* ==========================================================================
+   Q'filo — Design tokens
+   Deep black dominates, intense red accents, dark brown warmth.
+   ========================================================================== */
+@theme {
+  /* Brand palette (mandatory tokens) */
+  --color-ink: #301617;
+  --color-blood: #bb0e1b;
+  --color-clay: #4a2224;
+  --color-gold: #e8ad21;
+  --color-black: #000000;
+  --color-white: #ffffff;
+
+  /* Supporting tones derived from the palette */
+  --color-ember: #e8ad21;
+  --color-ash: #a49a90;
+  --color-paper: #f4ede1;
+  --color-sand: #e4d7c2;
+  --color-crust: #6b3a33;
+
+  /* Typography */
+  --font-chunky: "Lilita One", "Anton", cursive, sans-serif;
+  --font-display: "Anton", "Arial Narrow", sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
+
+  /* Motion */
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Extra breakpoint used by the header */
+  --breakpoint-xs: 30rem;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-white);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--color-blood);
+    color: var(--color-white);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ember);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  img {
+    -webkit-user-drag: none;
+  }
+}
+
+/* ==========================================================================
+   Components
+   ========================================================================== */
+@layer components {
+  .shell {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 100rem;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .shell { padding-inline: 2rem; }
+  }
+  @media (min-width: 1024px) {
+    .shell { padding-inline: 3.5rem; }
+  }
+
+  /* Display headlines */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 0.84;
+    letter-spacing: 0.005em;
+  }
+
+  .stroke-text {
+    -webkit-text-stroke: 1.4px currentColor;
+    color: transparent;
+  }
+  @media (min-width: 768px) {
+    .stroke-text { -webkit-text-stroke-width: 2px; }
+  }
+
+  /* Small editorial eyebrow label with a rule */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 2.25rem;
+    height: 2px;
+    background-color: currentColor;
+    opacity: 0.9;
+  }
+
+  /* Buttons — sharp, brutalist edges (no rounded corners) */
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 1.05rem 1.9rem;
+    font-family: var(--font-sans);
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    line-height: 1;
+    border: 1px solid transparent;
+    cursor: pointer;
+    overflow: hidden;
+    transition: color 0.45s var(--ease-editorial),
+      background-color 0.45s var(--ease-editorial),
+      border-color 0.45s var(--ease-editorial);
+  }
+  .btn > * { position: relative; z-index: 1; }
+
+  .btn-primary {
+    background-color: var(--color-blood);
+    color: var(--color-white);
+  }
+  .btn-primary::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-white);
+    transform: translateY(101%);
+    transition: transform 0.5s var(--ease-editorial);
+    z-index: 0;
+  }
+  .btn-primary:hover { color: var(--color-ink); }
+  .btn-primary:hover::after { transform: translateY(0); }
+
+  .btn-ghost {
+    color: var(--color-white);
+    border-color: color-mix(in oklab, white 28%, transparent);
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-white);
+    background-color: var(--color-white);
+    color: var(--color-ink);
+  }
+
+  .btn-ink {
+    background-color: var(--color-ink);
+    color: var(--color-white);
+  }
+  .btn-ink:hover { background-color: var(--color-blood); }
+
+  /* Underline link */
+  .link-line {
+    position: relative;
+    display: inline-block;
+  }
+  .link-line::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s var(--ease-editorial);
+  }
+  .link-line:hover::after { transform: scaleX(1); transform-origin: left; }
+
+  /* Nav link with red indicator */
+  .nav-link {
+    position: relative;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: color-mix(in oklab, white 82%, transparent);
+    transition: color 0.35s ease;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-blood);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s var(--ease-editorial);
+  }
+  .nav-link:hover { color: var(--color-white); }
+  .nav-link:hover::after { transform: scaleX(1); }
+
+  /* Grain / film texture overlay */
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  }
+
+  /* Header — transparent over the hero, solid after scroll */
+  [data-header] {
+    background-color: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background-color 0.5s var(--ease-editorial),
+      border-color 0.5s var(--ease-editorial),
+      backdrop-filter 0.5s var(--ease-editorial);
+  }
+
+  /* Marquee band */
+  .marquee { overflow: hidden; display: flex; }
+  .marquee__track {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 2.5rem;
+    white-space: nowrap;
+    animation: marquee 34s linear infinite;
+    will-change: transform;
+  }
+  .marquee:hover .marquee__track { animation-play-state: paused; }
+
+  /* Image reveal via clip mask (only when JS is available) */
+  html.js .img-reveal {
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 1.2s var(--ease-editorial);
+    transition-delay: var(--reveal-delay, 0s);
+  }
+  html.js .img-reveal.is-visible,
+  html.js .is-visible .img-reveal { clip-path: inset(0 0 0 0); }
+
+  /* Scroll reveal (only when JS is available) */
+  html.js .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s var(--ease-editorial),
+      transform 0.9s var(--ease-editorial);
+    transition-delay: var(--reveal-delay, 0s);
+  }
+  html.js .reveal.is-visible { opacity: 1; transform: none; }
+
+  /* Dish card */
+  .dish-media img {
+    transition: transform 1.1s var(--ease-editorial), filter 0.7s ease;
+  }
+  .dish:hover .dish-media img {
+    transform: scale(1.06);
+  }
+  .dish:hover .dish-media::after { opacity: 0.85; }
+  .dish-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, color-mix(in oklab, black 78%, transparent) 100%);
+    opacity: 0.65;
+    transition: opacity 0.6s ease;
+  }
+
+  .dish-arrow {
+    transition: transform 0.5s var(--ease-editorial), background-color 0.5s ease;
+  }
+  .dish:hover .dish-arrow {
+    transform: translate(4px, -4px);
+    background-color: var(--color-blood);
+    color: var(--color-white);
+  }
+}
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+@layer utilities {
+  .text-shadow-hero {
+    text-shadow: 0 2px 40px rgba(0, 0, 0, 0.55);
+  }
+  .bg-radial-ember {
+    background: radial-gradient(
+      circle at 30% 20%,
+      color-mix(in oklab, var(--color-clay) 90%, transparent),
+      transparent 60%
+    );
+  }
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent);
+    mask-image: linear-gradient(to bottom, black 70%, transparent);
+  }
+}
+
+/* ==========================================================================
+   Keyframes
+   ========================================================================== */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(110%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Chifa Dragón Dorado Hero tokens & styles */
+:root {
+  --red: #b8121f;
+  --red-dark: #8f0d18;
+  --cream: #fbf3e2;
+  --gold: #f5b324;
+  --ink: #2b0a0a;
+}
+.hero-bg { background: var(--red); }
+.btn-pill {
+  background: var(--red);
+  color: #fff;
+  border-radius: 999px 999px 999px 999px / 60% 60% 60% 60%;
+  box-shadow: 0 0 0 3px #fff inset, 0 0 0 1px var(--red-dark);
+  transition: transform .15s;
+}
+.btn-pill:hover { transform: translateY(-1px) scale(1.03); }
+.nav-link {
+  position: relative;
+  font-weight: 800;
+  font-size: .72rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.nav-link.active { color: var(--red); }
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  background: var(--red);
+}
+.title-stroke { text-shadow: 0 4px 0 rgba(0,0,0,.18); }
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-14px) rotate(1deg); }
+}
+.bob { animation: bob 5s ease-in-out infinite; }
+.bit { position: absolute; pointer-events: none; }
+.font-display { font-family: "Lilita One", Impact, sans-serif; }
+
+/* Hero headline rise on load */
+.line-mask { display: block; overflow: hidden; }
+.line-mask > span {
+  display: block;
+  animation: rise-in 1.05s var(--ease-editorial) both;
+}
+.line-mask:nth-child(2) > span { animation-delay: 0.12s; }
+.line-mask:nth-child(3) > span { animation-delay: 0.24s; }
+
+/* ==========================================================================
+   Hero — red banner, 3D title, chaufa bowl
+   ========================================================================== */
+.hero-title {
+  font-family: var(--font-chunky);
+  color: #fff;
+  line-height: 0.86;
+  letter-spacing: 0.02em;
+  text-shadow:
+    0 2px 0 #9e1217,
+    0 4px 0 #850c11,
+    0 6px 0 #6d080d,
+    0 9px 0 #4f0508,
+    0 14px 24px rgba(0, 0, 0, 0.4);
+}
+.hero-label {
+  font-family: var(--font-chunky);
+  background: var(--color-gold);
+  color: #301617;
+  border: 2px solid #301617;
+  box-shadow: 3px 3px 0 #301617;
+}
+@keyframes hero-bowl {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.hero-bowl { animation: hero-bowl 6s ease-in-out infinite; }
+
+/* Why Q'filo — dish picker */
+.picks > li { flex: 0 0 auto; width: 46%; }
+@media (min-width: 640px) { .picks > li { width: 30%; } }
+@media (min-width: 1024px) { .picks > li { width: auto; } }
+.pick {
+  display: flex; height: 100%; flex-direction: column; align-items: center; justify-content: center; gap: 1.1rem;
+  padding: 2.25rem 1rem; border-right: 1px solid #e5e5e5; background: #fff; color: var(--color-ink);
+  font-family: var(--font-chunky); font-size: 1rem; text-transform: uppercase; letter-spacing: .03em; text-align: center; line-height: 1.1;
+  transition: background-color .35s ease, color .35s ease;
+}
+.pick img {
+  width: 7.5rem; height: 7.5rem; border-radius: 9999px; object-fit: cover;
+  box-shadow: 0 14px 22px rgba(0,0,0,.22); border: 4px solid #fff;
+  transition: transform .5s var(--ease-editorial);
+}
+@media (min-width: 1280px) { .pick img { width: 9rem; height: 9rem; } }
+.pick:hover, .pick:focus-visible, .pick.is-active { background: var(--color-blood); color: #fff; }
+.pick:hover img, .pick:focus-visible img, .pick.is-active img { transform: scale(1.12) rotate(-4deg); }
+.picks:hover .pick.is-active:not(:hover) { background: #fff; color: var(--color-ink); }
+.picks:hover .pick.is-active:not(:hover) img { transform: none; }
+
+/* Flavours — house favourites list */
+.fav { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 0; }
+.fav img { width: 3.5rem; height: 3.5rem; flex-shrink: 0; border-radius: 9999px; object-fit: cover; box-shadow: 0 6px 12px rgba(48,22,23,.2); }
+.fav > div { flex: 1; min-width: 0; }
+.fav-name { font-weight: 800; color: var(--color-ink); line-height: 1.2; }
+.fav-desc { margin-top: .15rem; font-size: .8rem; color: #6b5a58; line-height: 1.35; }
+.fav-tag { flex-shrink: 0; border-radius: 9999px; background: color-mix(in oklab, var(--color-gold) 22%, white); color: var(--color-ink); padding: .2rem .65rem; font-family: var(--font-chunky); font-size: .7rem; text-transform: uppercase; letter-spacing: .04em; }
+
+/* Vive la experiencia — vertical video cards */
+.exp-list { scrollbar-width: none; }
+.exp-list::-webkit-scrollbar { display: none; }
+.exp-list > li { flex: 0 0 auto; width: 68%; scroll-snap-align: start; }
+@media (min-width: 640px) { .exp-list > li { width: 40%; } }
+@media (min-width: 1024px) { .exp-list > li { width: auto; } }
+.exp-card { position: relative; aspect-ratio: 9 / 16; overflow: hidden; border-radius: 1.5rem; background: var(--color-ink); box-shadow: 0 24px 40px -22px rgba(48,22,23,.7); }
+.exp-card video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease-editorial); }
+.exp-card:hover video { transform: scale(1.04); }
+.exp-overlay { position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: space-between; gap: .75rem; padding: 1rem; background: linear-gradient(to top, rgba(48,22,23,.85), transparent 45%); pointer-events: none; }
+.exp-play { pointer-events: auto; display: grid; place-items: center; width: 3rem; height: 3rem; flex-shrink: 0; border-radius: 9999px; background: var(--color-blood); color: #fff; box-shadow: 0 0 0 4px rgba(255,255,255,.25); transition: transform .3s ease, background-color .3s ease; }
+.exp-play:hover { transform: scale(1.08); background: #8f0a15; }
+.exp-play svg { width: 1.15rem; height: 1.15rem; }
+.exp-play .i-pause, .exp-card.is-playing .exp-play .i-play { display: none; }
+.exp-card.is-playing .exp-play .i-pause { display: inline; }
+.exp-card.no-video .exp-play { display: none; }
+.exp-caption { font-family: var(--font-chunky); font-size: 1.05rem; line-height: 1.1; text-transform: uppercase; color: #fff; text-align: right; }
+.exp-card--featured .exp-caption { border-radius: .75rem; background: var(--color-gold); color: var(--color-ink); padding: .45rem .8rem; }
+
+/* Reviews slider */
+.review-card { position: relative; border-radius: 2rem; background: #fff; padding: 3rem 1.5rem 2rem; text-align: center; box-shadow: 0 30px 50px -30px rgba(48,22,23,.5); }
+@media (min-width: 640px) { .review-card { padding: 3.25rem 3rem 2.25rem; } }
+.review-card::after { content: ""; position: absolute; left: 50%; bottom: -12px; width: 26px; height: 26px; background: #fff; border-radius: 4px; transform: translateX(-50%) rotate(45deg); }
+.review-quote { position: absolute; left: 50%; top: 0; display: grid; place-items: center; width: 3.5rem; height: 3.5rem; border-radius: 1.1rem; background: var(--color-gold); color: var(--color-ink); transform: translate(-50%, -50%) rotate(-8deg); box-shadow: 0 10px 18px -8px rgba(48,22,23,.45); }
+.review-quote svg { width: 1.5rem; height: 1.5rem; }
+.review { position: absolute; inset: 0; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .5s ease, transform .5s var(--ease-editorial), visibility .5s; }
+.review.is-active { position: relative; opacity: 1; visibility: visible; transform: none; }
+.review-text { font-size: 1.05rem; font-weight: 500; line-height: 1.6; color: #4a3634; }
+@media (min-width: 640px) { .review-text { font-size: 1.15rem; } }
+.review-author { margin-top: 1.4rem; display: inline-flex; align-items: center; gap: .75rem; text-align: left; }
+.review-avatar { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; flex-shrink: 0; border-radius: 9999px; background: var(--color-gold); color: var(--color-ink); font-family: var(--font-chunky); font-size: 1.1rem; }
+.review-nav { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 9999px; border: 2px solid #f1e4cf; background: #fff; color: var(--color-ink); transition: background-color .3s ease, color .3s ease, border-color .3s ease, transform .3s ease; }
+.review-nav:hover { background: var(--color-blood); color: #fff; border-color: var(--color-blood); transform: scale(1.08); }
+.review-dot { width: .65rem; height: .65rem; border-radius: 9999px; background: #e6d6bd; transition: width .3s ease, background-color .3s ease; }
+.review-dot[aria-current="true"] { width: 1.8rem; background: var(--color-blood); }
+
+/* Footer */
+.foot-card { display: flex; align-items: flex-start; gap: .9rem; border-radius: 1.25rem; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.05); padding: 1.1rem 1.2rem; }
+.foot-icon { display: grid; place-items: center; width: 2.6rem; height: 2.6rem; flex-shrink: 0; border-radius: 9999px; background: var(--color-blood); color: #fff; }
+.foot-label { font-family: var(--font-chunky); font-size: .95rem; text-transform: uppercase; letter-spacing: .04em; color: var(--color-gold); }
+.foot-social { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 9999px; background: rgba(255,255,255,.08); color: #fff; transition: background-color .3s ease, color .3s ease, transform .3s ease; }
+.foot-social:hover { background: var(--color-gold); color: var(--color-ink); transform: translateY(-2px); }
+.foot-link { display: inline-flex; align-items: center; transition: color .3s ease, transform .3s ease; }
+.foot-link::before { content: "✦"; font-size: .65rem; color: var(--color-gold); opacity: 0; width: 0; overflow: hidden; transition: opacity .3s ease, width .3s ease; }
+.foot-link:hover { color: #fff; }
+.foot-link:hover::before { opacity: 1; width: .7rem; margin-right: .45rem; }
+
+/* ==========================================================================
+   Reduced motion — content must remain fully visible & still
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .marquee__track,
+  .animate-ping,
+  .line-mask > span,
+  .hero-bowl { animation: none !important; }
+  .line-mask > span { opacity: 1; transform: none; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .img-reveal { clip-path: none !important; }
+  .dish-media img { transition: none; }
+  .dish:hover .dish-media img { transform: none; }
+  .review { transition: none; }
+}
+  </style>
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Q'filo",
+    "description": "Restaurante peruano de fusión en Getafe: chifa y criollo.",
+    "servesCuisine": ["Peruana", "Chifa", "Criolla"],
+    "telephone": "+34918324795",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle Castellón de la Plana 6",
+      "addressLocality": "Getafe",
+      "addressRegion": "Madrid",
+      "postalCode": "28903",
+      "addressCountry": "ES"
+    },
+    "areaServed": "Getafe, Madrid"
+  }
+  </script>
+</head>
+<body>
+  <a href="#contenido" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-blood focus:px-5 focus:py-3 focus:text-xs focus:font-bold focus:uppercase focus:tracking-widest focus:text-white">Saltar al contenido</a>
+
+  <!-- =====================================================================
+       A. HEADER (Faithful to Reference Pill Nav)
+       ===================================================================== -->
+  <header id="site-header" class="fixed inset-x-0 top-0 z-50 pt-3 sm:pt-4 px-3 sm:px-6 pointer-events-none transition-all duration-500" data-header>
+    <div class="shell max-w-7xl">
+      <div class="flex items-center justify-between gap-2 sm:gap-4 rounded-full bg-white px-4 sm:px-6 py-2.5 sm:py-3 shadow-[0_10px_35px_rgba(0,0,0,0.14)] border border-neutral-100 pointer-events-auto transition-transform duration-300">
+        <!-- Left Action Button (Order Now) -->
+        <a href="#carta" class="inline-flex items-center gap-2 rounded-full bg-[#bb0e1b] hover:bg-[#8f0a15] text-white px-4 sm:px-6 py-2.5 text-[0.7rem] sm:text-xs font-black uppercase tracking-wider shadow-sm transition-all duration-300 hover:scale-105 active:scale-95">
+          <svg class="h-3.5 w-3.5 sm:h-4 sm:w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="hidden xs:inline">Pedir ahora</span>
+          <span class="xs:hidden">Pedir</span>
+        </a>
+
+        <!-- Desktop Navigation with Centered Logo Crest -->
+        <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-[0.72rem] lg:text-xs font-bold uppercase tracking-wider text-neutral-800" aria-label="Navegación principal">
+          <a href="#inicio" class="text-[#bb0e1b] relative font-extrabold after:content-[''] after:absolute after:-bottom-1.5 after:left-1/2 after:-translate-x-1/2 after:w-4 after:h-0.5 after:bg-[#bb0e1b] after:rounded-full">Inicio</a>
+          <a href="#carta" class="hover:text-[#bb0e1b] transition-colors">Menú</a>
+          <a href="#por-que" class="hover:text-[#bb0e1b] transition-colors">Nosotros</a>
+
+          <!-- Center Emblem / Logo (Enlarged) -->
+          <a href="#inicio" class="group relative px-3 sm:px-5 flex items-center justify-center -my-3" aria-label="Q'filo, inicio">
+            <img src="assets/img/logo-qfilo.webp" alt="Q'filo" width="1733" height="907" class="h-11 lg:h-14 w-auto max-w-none object-contain transition-transform duration-300 group-hover:scale-105" />
+          </a>
+
+          <a href="#experiencia" class="hover:text-[#bb0e1b] transition-colors">Experiencia</a>
+          <a href="#ofertas" class="hover:text-[#bb0e1b] transition-colors">Ofertas</a>
+          <a href="#contacto" class="hover:text-[#bb0e1b] transition-colors">Contacto</a>
+        </nav>
+
+        <!-- Mobile Center Brand (visible only when md:hidden) -->
+        <a href="#inicio" class="flex md:hidden items-center group" aria-label="Q'filo, inicio">
+          <img src="assets/img/logo-qfilo.webp" alt="Q'filo" width="1733" height="907" class="h-9 sm:h-10 w-auto max-w-none object-contain" />
+        </a>
+
+        <!-- Right Action Button (Cart / Reservar) & Mobile Hamburger -->
+        <div class="flex items-center gap-2">
+          <a href="tel:+34918324795" class="inline-flex items-center gap-2 rounded-full bg-[#bb0e1b] hover:bg-[#8f0a15] text-white px-4 sm:px-6 py-2.5 text-[0.7rem] sm:text-xs font-black uppercase tracking-wider shadow-sm transition-all duration-300 hover:scale-105 active:scale-95">
+            <svg class="h-3.5 w-3.5 sm:h-4 sm:w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span class="hidden xs:inline">Reservar</span>
+          </a>
+
+          <!-- Mobile trigger -->
+          <button type="button" id="menu-toggle" class="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-full bg-neutral-100 text-neutral-800 transition-colors hover:bg-[#bb0e1b] hover:text-white" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu overlay -->
+  <div id="mobile-menu" class="fixed inset-0 z-[60] hidden bg-ink/98 backdrop-blur-sm md:hidden" role="dialog" aria-modal="true" aria-label="Menú">
+    <div class="shell flex h-full flex-col">
+      <div class="flex items-center justify-between py-5">
+        <div class="flex items-center gap-3">
+          <div class="rounded-xl bg-white px-4 py-2 shadow-md">
+            <img src="assets/img/logo-qfilo.webp" alt="Q'filo" width="1733" height="907" class="h-10 w-auto object-contain" />
+          </div>
+        </div>
+        <button type="button" id="menu-close" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 text-white transition-colors hover:border-blood hover:bg-blood" aria-label="Cerrar menú">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+
+      <nav class="flex flex-1 flex-col justify-center gap-2" aria-label="Navegación móvil">
+        <a href="#inicio" class="mobile-link font-['Lilita_One',sans-serif] border-b border-white/10 py-5 text-4xl text-white transition-colors hover:text-gold sm:text-5xl">Inicio</a>
+        <a href="#carta" class="mobile-link font-['Lilita_One',sans-serif] border-b border-white/10 py-5 text-4xl text-white transition-colors hover:text-gold sm:text-5xl">Menú</a>
+        <a href="#por-que" class="mobile-link font-['Lilita_One',sans-serif] border-b border-white/10 py-5 text-4xl text-white transition-colors hover:text-gold sm:text-5xl">Nosotros</a>
+        <a href="#experiencia" class="mobile-link font-['Lilita_One',sans-serif] border-b border-white/10 py-5 text-4xl text-white transition-colors hover:text-gold sm:text-5xl">Experiencia</a>
+        <a href="#contacto" class="mobile-link font-['Lilita_One',sans-serif] border-b border-white/10 py-5 text-4xl text-white transition-colors hover:text-gold sm:text-5xl">Contacto</a>
+      </nav>
+
+      <div class="flex flex-col gap-4 py-8">
+        <a href="#carta" class="mobile-link btn bg-blood text-white w-full rounded-full py-4 text-center font-bold">Explorar la carta</a>
+        <p class="text-center text-[0.65rem] font-bold uppercase tracking-[0.3em] text-ash">Chifa criollo · Fusión peruana en Getafe</p>
+      </div>
+    </div>
+  </div>
+
+  <main id="contenido">
+
+    <!-- ===================================================================
+         B. HERO (Faithful Re-creation of Reference Style)
+         =================================================================== -->
+    <section id="inicio" class="relative isolate overflow-hidden bg-[#FAF5EB] pb-16 sm:pb-20">
+
+      <!-- 1. Red banner -->
+      <div class="relative bg-gradient-to-b from-[#bb0e1b] via-[#bb0e1b] to-[#a00b17] pt-28 pb-[44vw] sm:pt-32 sm:pb-64 lg:pt-36 lg:pb-80">
+
+        <!-- Line-art doodles -->
+        <div class="pointer-events-none absolute inset-0 select-none overflow-hidden text-white" aria-hidden="true">
+          <!-- leaves -->
+          <svg class="absolute left-4 top-24 h-24 w-24 -rotate-12 opacity-20 sm:left-10 sm:h-36 sm:w-36" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 60C20 30 50 15 80 20c5 30-15 60-45 60Z"/><path d="M20 60c20-10 40-25 60-40M35 53c10-8 20-11 30-13M28 68c7-6 20-10 27-8"/></svg>
+          <!-- takeout box -->
+          <svg class="absolute left-[18%] top-[58%] hidden h-20 w-20 rotate-6 opacity-15 md:block" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"><path d="M18 34h64l-8 54H26Z"/><path d="M18 34 30 14h40l12 20"/><path d="M40 14c0-6 20-6 20 0"/></svg>
+          <!-- wok -->
+          <svg class="absolute right-6 top-24 h-24 w-24 rotate-12 opacity-20 sm:right-16 sm:h-32 sm:w-32" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M10 50h70c0 18-16 30-35 30S10 68 10 50Z"/><path d="M80 52h14"/><path d="M34 40c0-8 6-8 6-16M46 40c0-8 6-8 6-16M58 40c0-8 6-8 6-16"/></svg>
+          <!-- chili -->
+          <svg class="absolute right-[20%] top-[56%] hidden h-16 w-16 rotate-45 opacity-20 md:block" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M30 20c15-5 40 10 35 45-5 20-25 25-30 25s-10-15 0-35c5-15 0-25-5-35Z"/><path d="M65 15c-5-5-10-3-15 3"/></svg>
+          <!-- sparkles -->
+          <svg class="absolute left-[30%] top-28 h-6 w-6 opacity-30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2 9 9 3-9 3-2 9-2-9-9-3 9-3Z"/></svg>
+          <svg class="absolute right-[32%] top-[30%] h-5 w-5 opacity-30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2 9 9 3-9 3-2 9-2-9-9-3 9-3Z"/></svg>
+        </div>
+
+        <div class="relative z-10 mx-auto max-w-6xl px-4 text-center">
+          <p class="hero-label inline-block px-4 py-1.5 text-[0.7rem] uppercase tracking-wider sm:px-6 sm:text-sm">Bienvenido a Q'filo · Chifa &amp; criollo</p>
+          <h1 class="hero-title mt-4 text-[17vw] uppercase sm:mt-6 sm:text-[7rem] lg:text-[9.5rem] xl:text-[10.5rem]">
+            <span class="block">Sabor que</span>
+            <span class="block">provoca</span>
+          </h1>
+          <p class="sr-only">Restaurante peruano de fusión chifa y criollo en Getafe, Madrid.</p>
+        </div>
+
+        <!-- Organic wave into the cream floor -->
+        <svg class="pointer-events-none absolute inset-x-0 -bottom-px block h-24 w-full sm:h-40 lg:h-52" viewBox="0 0 1440 240" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 70C170 170 330 190 480 120 610 60 660 180 740 196 820 212 860 80 1000 92 1150 104 1290 200 1440 110V240H0Z" fill="#FAF5EB"/>
+        </svg>
+      </div>
+
+      <!-- 3. Centre stage: house plate -->
+      <div class="relative z-20 mx-auto -mt-[46vw] max-w-6xl px-4 sm:-mt-[20rem] lg:-mt-[27rem]">
+        <div class="relative mx-auto w-full max-w-[820px]">
+
+          <!-- the plate -->
+          <div class="hero-bowl relative z-10">
+            <img src="assets/img/hero-plato-broaster.webp" alt="Pollo broaster con arroz chaufa y papas fritas en un plato de cerámica" width="1672" height="940" fetchpriority="high" decoding="async" class="relative z-10 h-auto w-full drop-shadow-[0_30px_30px_rgba(0,0,0,0.35)]" />
+          </div>
+          <div class="pointer-events-none absolute bottom-[8%] left-1/2 h-8 w-[76%] -translate-x-1/2 rounded-full bg-black/30 blur-xl" aria-hidden="true"></div>
+
+        </div>
+
+        <!-- CTAs -->
+        <div class="relative z-30 mt-6 flex flex-col items-center justify-center gap-3 sm:mt-8 sm:flex-row sm:gap-4">
+          <a href="#carta" class="inline-flex items-center gap-2 rounded-full bg-blood px-8 py-4 text-xs font-black uppercase tracking-widest text-white shadow-[0_12px_28px_rgba(189,21,34,0.35)] transition-transform duration-300 hover:scale-105 hover:bg-[#8f0a15]">
+            Ver la carta
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a href="tel:+34918324795" class="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-7 py-4 text-xs font-black uppercase tracking-wider text-neutral-800 shadow-[0_8px_20px_rgba(0,0,0,0.08)] transition-transform duration-300 hover:scale-105">
+            <span class="text-gold">✦</span> Reservar mesa
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         B2. WHY Q'FILO — values + signature dish picker
+         =================================================================== -->
+    <section id="por-que" class="relative overflow-hidden bg-[#FAF5EB] pt-16 text-ink sm:pt-20" aria-labelledby="por-que-title">
+
+
+      <div class="relative mx-auto max-w-4xl px-5 text-center">
+        <p class="inline-block rounded-full bg-blood px-5 py-1.5 font-chunky text-xs uppercase tracking-wider text-white sm:text-sm">¿Por qué Q'filo?</p>
+        <h2 id="por-que-title" class="mt-4 font-chunky text-4xl uppercase leading-[0.95] text-blood sm:text-5xl lg:text-6xl">
+          Fuego de wok,<br />sazón de casa
+        </h2>
+        <p class="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-neutral-600">
+          En Q'filo el chifa y la cocina criolla se cruzan en cada plato: arroz salteado al momento, carnes jugosas y caldos que reconfortan. Cocina peruana hecha con cariño y servida con fuego, aquí en Getafe.
+        </p>
+
+        <ul class="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4">
+          <li class="flex flex-col items-center">
+            <span class="grid h-14 w-14 place-items-center rounded-xl border-2 border-dashed border-blood/40 text-blood">
+              <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+            </span>
+            <span class="mt-3 font-chunky text-sm uppercase tracking-wide">Producto fresco</span>
+            <span class="mt-1.5 h-0.5 w-8 rounded-full bg-blood/60"></span>
+          </li>
+          <li class="flex flex-col items-center">
+            <span class="grid h-14 w-14 place-items-center rounded-xl border-2 border-dashed border-blood/40 text-blood">
+              <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+            </span>
+            <span class="mt-3 font-chunky text-sm uppercase tracking-wide">Fuego de wok</span>
+            <span class="mt-1.5 h-0.5 w-8 rounded-full bg-blood/60"></span>
+          </li>
+          <li class="flex flex-col items-center">
+            <span class="grid h-14 w-14 place-items-center rounded-xl border-2 border-dashed border-blood/40 text-blood">
+              <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11h18"/><path d="M5 11V8a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M9 18h6"/></svg>
+            </span>
+            <span class="mt-3 font-chunky text-sm uppercase tracking-wide">Sazón criolla</span>
+            <span class="mt-1.5 h-0.5 w-8 rounded-full bg-blood/60"></span>
+          </li>
+          <li class="flex flex-col items-center">
+            <span class="grid h-14 w-14 place-items-center rounded-xl border-2 border-dashed border-blood/40 text-blood">
+              <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/></svg>
+            </span>
+            <span class="mt-3 font-chunky text-sm uppercase tracking-wide">Hecho al momento</span>
+            <span class="mt-1.5 h-0.5 w-8 rounded-full bg-blood/60"></span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Signature dish picker -->
+      <ul class="picks mt-14 flex snap-x snap-mandatory overflow-x-auto border-t border-neutral-200 bg-white sm:mt-16 lg:grid lg:grid-cols-7 lg:overflow-visible" aria-label="Platos de la casa">
+        <li class="snap-start"><a href="#carta" class="pick">
+          <img src="assets/img/tallarin-saltado.jpg" alt="" width="1536" height="1024" loading="lazy" decoding="async" />
+          <span>Tallarín saltado</span>
+        </a></li>
+        <li class="snap-start"><a href="#carta" class="pick">
+          <img src="assets/img/aeropuerto.jpg" alt="" width="554" height="554" loading="lazy" decoding="async" />
+          <span>Aeropuerto</span>
+        </a></li>
+        <li class="snap-start"><a href="#carta" class="pick">
+          <img src="assets/img/chaufa-de-mariscos.webp" alt="" width="1200" height="800" loading="lazy" decoding="async" />
+          <span>Chaufa de mariscos</span>
+        </a></li>
+        <li class="snap-start"><a href="#carta" class="pick">
+          <img src="assets/img/lomo-saltado-sq.webp" alt="" width="640" height="640" loading="lazy" decoding="async" />
+          <span>Lomo saltado</span>
+        </a></li>
+        <li class="snap-start"><a href="#carta" class="pick is-active">
+          <img src="assets/img/chaufa-de-pollo-sq.webp" alt="" width="640" height="640" loading="lazy" decoding="async" />
+          <span>Chaufa de pollo</span>
+        </a></li>
+        <li class="snap-start"><a href="#carta" class="pick">
+          <img src="assets/img/pollo-a-la-brasa-sq.webp" alt="" width="640" height="640" loading="lazy" decoding="async" />
+          <span>Pollo a la brasa</span>
+        </a></li>
+        <li class="snap-start"><a href="#carta" class="pick">
+          <img src="assets/img/caldo-de-gallina.jpg" alt="" width="1200" height="600" loading="lazy" decoding="async" />
+          <span>Caldo de gallina</span>
+        </a></li>
+      </ul>
+    </section>
+
+    <!-- ===================================================================
+         B3. FLAVOURS — story + house favourites list
+         =================================================================== -->
+    <section id="sabores" class="relative overflow-hidden bg-[#FAF5EB] text-ink" aria-labelledby="sabores-title">
+      <div class="relative mx-auto grid max-w-6xl items-center gap-12 px-5 pt-20 sm:pt-24 lg:grid-cols-2 lg:gap-16">
+
+        <!-- Photo -->
+        <div class="relative mx-auto w-full max-w-md lg:max-w-none">
+          <div class="relative aspect-[4/5] overflow-hidden rounded-3xl shadow-[0_30px_50px_-20px_rgba(48,22,23,0.55)] lg:aspect-[5/6]">
+            <img src="assets/img/cocina-salsa.webp" alt="Salsa cremosa cayendo sobre pollo crujiente con arroz chaufa y papas fritas" width="900" height="1350" loading="lazy" decoding="async" class="h-full w-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" aria-hidden="true"></div>
+            <p class="absolute bottom-5 left-5 rounded-full bg-gold px-4 py-1.5 font-chunky text-xs uppercase tracking-wider text-ink sm:text-sm">Hecho al momento</p>
+          </div>
+        </div>
+
+        <!-- Story -->
+        <div>
+          <p class="inline-block rounded-full bg-blood px-5 py-1.5 font-chunky text-xs uppercase tracking-wider text-white sm:text-sm">Nuestra cocina</p>
+          <h2 id="sabores-title" class="mt-4 font-chunky text-4xl uppercase leading-[0.95] text-blood sm:text-5xl lg:text-6xl">Un mundo de sabor<br />en cada bocado</h2>
+          <p class="mt-5 max-w-xl text-sm leading-relaxed text-neutral-600 sm:text-base">
+            En Q'filo juntamos dos tradiciones que se entienden de memoria: el chifa, con su wok encendido y su salsa de soya, y la cocina criolla peruana, con su sazón de casa. El resultado son platos generosos, hechos al momento y pensados para compartir en Getafe.
+          </p>
+          <ul class="mt-7 grid gap-x-6 gap-y-3 text-sm font-bold text-ink sm:grid-cols-2">
+            <li class="flex items-center gap-3"><span class="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gold text-ink"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>Salteados a fuego vivo</li>
+            <li class="flex items-center gap-3"><span class="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gold text-ink"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>Ingredientes frescos</li>
+            <li class="flex items-center gap-3"><span class="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gold text-ink"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>Recetas chifa y criollas</li>
+            <li class="flex items-center gap-3"><span class="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-gold text-ink"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>Raciones para compartir</li>
+          </ul>
+          <a href="#carta" class="mt-8 inline-flex items-center gap-2 rounded-full bg-blood px-7 py-3.5 text-xs font-black uppercase tracking-widest text-white shadow-[0_12px_28px_rgba(187,14,27,0.3)] transition-transform duration-300 hover:scale-105 hover:bg-[#8f0a15]">
+            Ver la carta
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- House favourites -->
+      <div id="carta" class="relative mt-24 pb-16 sm:mt-28 sm:pb-20">
+        <div class="absolute inset-x-0 bottom-0 top-1/2 bg-gold" aria-hidden="true"></div>
+
+        <div class="relative mx-auto max-w-5xl px-5">
+          <!-- floating bowl -->
+          <div class="pointer-events-none absolute -top-20 right-2 z-20 w-36 sm:-top-28 sm:right-6 sm:w-56 lg:-right-10 lg:w-72" aria-hidden="true">
+            <img src="assets/img/chifa-dragon-plate.webp" alt="" width="687" height="490" loading="lazy" decoding="async" class="hero-bowl w-full drop-shadow-[0_24px_24px_rgba(48,22,23,0.4)]" />
+          </div>
+
+          <div class="relative z-10 rounded-3xl bg-white p-6 shadow-[0_30px_60px_-25px_rgba(48,22,23,0.45)] sm:p-10">
+            <h3 class="max-w-[60%] font-chunky text-3xl leading-none text-ink sm:max-w-none sm:text-4xl">Los favoritos<br />de la casa</h3>
+
+            <div class="mt-8 grid gap-x-12 gap-y-8 md:grid-cols-2">
+              <div>
+                <p class="mb-3 font-chunky text-sm uppercase tracking-wider text-blood">Chifa</p>
+                <ul class="divide-y divide-dashed divide-neutral-200">
+                  <li class="fav"><img src="assets/img/chaufa-de-pollo-sq.webp" alt="" width="640" height="640" loading="lazy" decoding="async" /><div><p class="fav-name">Arroz chaufa de pollo</p><p class="fav-desc">Arroz al wok con pollo, huevo y cebolla china.</p></div><span class="fav-tag">Wok</span></li>
+                  <li class="fav"><img src="assets/img/chaufa-de-mariscos.webp" alt="" width="1200" height="800" loading="lazy" decoding="async" /><div><p class="fav-name">Chaufa de mariscos</p><p class="fav-desc">Mariscos salteados con arroz dorado.</p></div><span class="fav-tag">Wok</span></li>
+                  <li class="fav"><img src="assets/img/aeropuerto.jpg" alt="" width="554" height="554" loading="lazy" decoding="async" /><div><p class="fav-name">Aeropuerto</p><p class="fav-desc">Arroz, tallarín y proteína en un solo plato.</p></div><span class="fav-tag">Wok</span></li>
+                  <li class="fav"><img src="assets/img/tallarin-saltado.jpg" alt="" width="1536" height="1024" loading="lazy" decoding="async" /><div><p class="fav-name">Tallarín saltado</p><p class="fav-desc">Fideos a fuego fuerte con verduras crujientes.</p></div><span class="fav-tag">Wok</span></li>
+                </ul>
+              </div>
+              <div>
+                <p class="mb-3 font-chunky text-sm uppercase tracking-wider text-blood">Criollo &amp; postres</p>
+                <ul class="divide-y divide-dashed divide-neutral-200">
+                  <li class="fav"><img src="assets/img/pollo-a-la-brasa-sq.webp" alt="" width="640" height="640" loading="lazy" decoding="async" /><div><p class="fav-name">Pollo a la brasa</p><p class="fav-desc">Dorado a la brasa, con papas, ensalada y arroz.</p></div><span class="fav-tag">Criollo</span></li>
+                  <li class="fav"><img src="assets/img/lomo-saltado-sq.webp" alt="" width="640" height="640" loading="lazy" decoding="async" /><div><p class="fav-name">Lomo saltado</p><p class="fav-desc">Lomo, cebolla, tomate y papas doradas.</p></div><span class="fav-tag">Criollo</span></li>
+                  <li class="fav"><img src="assets/img/caldo-de-gallina.jpg" alt="" width="1200" height="600" loading="lazy" decoding="async" /><div><p class="fav-name">Caldo de gallina</p><p class="fav-desc">Gallina, papa, hierbabuena y huevo.</p></div><span class="fav-tag">Criollo</span></li>
+                  <li class="fav"><img src="https://images.unsplash.com/photo-1589660117682-0728d988a2d2?auto=format&fit=crop&w=200&q=70" alt="" width="200" height="200" loading="lazy" decoding="async" /><div><p class="fav-name">Tres leches</p><p class="fav-desc">Bizcocho empapado y crema suave.</p></div><span class="fav-tag">Dulce</span></li>
+                  <li class="fav"><img src="https://images.unsplash.com/photo-1744421461537-2c5a1eb9217a?auto=format&fit=crop&w=200&q=70" alt="" width="200" height="200" loading="lazy" decoding="async" /><div><p class="fav-name">Cheesecake</p><p class="fav-desc">Cremoso, con frutos rojos.</p></div><span class="fav-tag">Dulce</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         F2. VIVE LA EXPERIENCIA — vertical videos, stats, reviews
+         Videos live in assets/video/; the anniversary card is a photo.
+         =================================================================== -->
+    <section id="experiencia" class="relative overflow-hidden bg-[#FAF5EB] py-20 text-ink sm:py-24" aria-labelledby="experiencia-title">
+      <div class="mx-auto max-w-6xl px-5">
+        <div class="text-center">
+          <p class="inline-block rounded-full bg-blood px-5 py-1.5 font-chunky text-xs uppercase tracking-wider text-white sm:text-sm">Q'filo por dentro</p>
+          <h2 id="experiencia-title" class="mt-4 font-chunky text-4xl uppercase leading-[0.95] text-blood sm:text-5xl lg:text-6xl">Vive la<br />experiencia</h2>
+          <p class="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-neutral-600">El fuego del wok, el vapor del caldo y la mesa llena. Así se vive Q'filo desde dentro.</p>
+        </div>
+
+        <!-- Vertical video cards (scroll-snap on mobile) -->
+        <ul class="exp-list mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:mt-12 lg:grid lg:grid-cols-4 lg:gap-5 lg:overflow-visible">
+          <li class="exp-card" data-exp>
+            <video muted loop playsinline preload="metadata" aria-label="Video: gracias a todos por el apoyo">
+              <source src="assets/video/experiencia-1.mp4#t=0.1" type="video/mp4" />
+            </video>
+            <div class="exp-overlay">
+              <button type="button" class="exp-play" aria-label="Reproducir video"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path class="i-play" d="M8 5v14l11-7z"/><path class="i-pause" d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></button>
+              <p class="exp-caption">Gracias por el apoyo</p>
+            </div>
+          </li>
+          <li class="exp-card exp-card--featured">
+            <img src="assets/img/aniversario.webp" alt="Dos clientes posan con el marco de feliz aniversario de Q'filo en el restaurante" width="573" height="740" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover" />
+            <div class="exp-overlay justify-end">
+              <p class="exp-caption">¡Feliz aniversario!</p>
+            </div>
+          </li>
+          <li class="exp-card" data-exp>
+            <video muted loop playsinline preload="metadata" aria-label="Video: momentos que se disfrutan sin prisa">
+              <source src="assets/video/experiencia-2.mp4#t=0.1" type="video/mp4" />
+            </video>
+            <div class="exp-overlay">
+              <button type="button" class="exp-play" aria-label="Reproducir video"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path class="i-play" d="M8 5v14l11-7z"/><path class="i-pause" d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></button>
+              <p class="exp-caption">Momentos sin prisa</p>
+            </div>
+          </li>
+          <li class="exp-card" data-exp>
+            <video muted loop playsinline preload="metadata" aria-label="Video: dímelo">
+              <source src="assets/video/experiencia-3.mp4#t=0.1" type="video/mp4" />
+            </video>
+            <div class="exp-overlay">
+              <button type="button" class="exp-play" aria-label="Reproducir video"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path class="i-play" d="M8 5v14l11-7z"/><path class="i-pause" d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></button>
+              <p class="exp-caption">¡Dímelo!</p>
+            </div>
+          </li>
+        </ul>
+
+        <!-- Reviews — REPLACE the placeholder slides with real customer reviews (e.g. from Google) -->
+        <div class="mx-auto mt-20 max-w-3xl text-center sm:mt-24">
+          <p class="inline-block rounded-full bg-gold px-5 py-1.5 font-chunky text-xs uppercase tracking-wider text-ink sm:text-sm">Opiniones</p>
+          <h3 class="mt-4 font-chunky text-3xl uppercase leading-[0.95] text-blood sm:text-4xl lg:text-5xl">Lo que se cuenta<br />en la mesa</h3>
+        </div>
+
+        <div class="relative mx-auto mt-10 max-w-2xl" data-reviews>
+
+          <div class="review-card">
+            <span class="review-quote" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 11.5C4 7.9 6.2 5.4 9.6 5l.5 1.6C8.2 7.3 7.3 8.6 7.2 10H10v7H4zm10 0c0-3.6 2.2-6.1 5.6-6.5l.5 1.6c-1.9.7-2.8 2-2.9 3.4H20v7h-6z"/></svg></span>
+
+            <div class="relative" aria-live="polite">
+              <figure class="review is-active" data-review>
+                <blockquote class="review-text">Aquí irá la opinión de un cliente real. Copia el texto de una reseña de Google y pégalo en este lugar.</blockquote>
+                <figcaption class="review-author"><span class="review-avatar">C</span><span><span class="block font-chunky text-base text-ink">Nombre del cliente</span><span class="block text-xs text-neutral-500">Reseña de Google</span></span></figcaption>
+              </figure>
+              <figure class="review" data-review>
+                <blockquote class="review-text">Segunda reseña pendiente. Usa solo opiniones reales y con permiso de quien las escribió.</blockquote>
+                <figcaption class="review-author"><span class="review-avatar bg-blood text-white">C</span><span><span class="block font-chunky text-base text-ink">Nombre del cliente</span><span class="block text-xs text-neutral-500">Reseña de Google</span></span></figcaption>
+              </figure>
+              <figure class="review" data-review>
+                <blockquote class="review-text">Tercera reseña pendiente. Puedes añadir o quitar bloques &lt;figure data-review&gt; según necesites.</blockquote>
+                <figcaption class="review-author"><span class="review-avatar">C</span><span><span class="block font-chunky text-base text-ink">Nombre del cliente</span><span class="block text-xs text-neutral-500">Reseña de Google</span></span></figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="mt-8 flex items-center justify-center gap-4">
+            <button type="button" class="review-nav" data-review-prev aria-label="Opinión anterior"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+            <div class="flex items-center gap-2" data-review-dots></div>
+            <button type="button" class="review-nav" data-review-next aria-label="Opinión siguiente"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+          </div>
+
+          <div class="mt-8 text-center">
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Q%27filo%20Calle%20Castell%C3%B3n%20de%20la%20Plana%206%20Getafe" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full bg-blood px-7 py-3.5 text-xs font-black uppercase tracking-widest text-white shadow-[0_12px_28px_rgba(187,14,27,0.3)] transition-transform duration-300 hover:scale-105 hover:bg-[#8f0a15]">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2 0 3.6 1.1 4.3 2.6.7-1.5 2.3-2.6 4.3-2.6 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21Z"/></svg>
+              Déjanos tu opinión
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         F3. OFERTAS — CTA with order / booking buttons
+         =================================================================== -->
+    <section id="ofertas" class="relative isolate overflow-hidden bg-gold py-20 text-ink sm:py-24" aria-labelledby="ofertas-title">
+      <!-- side dishes -->
+      <div class="pointer-events-none absolute -left-24 top-1/2 -z-10 hidden h-72 w-72 -translate-y-1/2 overflow-hidden rounded-full border-[10px] border-white shadow-[0_24px_40px_rgba(48,22,23,0.35)] md:block lg:-left-16 lg:h-80 lg:w-80" aria-hidden="true">
+        <img src="assets/img/tallarin-saltado.jpg" alt="" width="1536" height="1024" loading="lazy" decoding="async" class="h-full w-full object-cover" />
+      </div>
+      <div class="pointer-events-none absolute -right-24 top-1/2 -z-10 hidden h-72 w-72 -translate-y-1/2 overflow-hidden rounded-full border-[10px] border-white shadow-[0_24px_40px_rgba(48,22,23,0.35)] md:block lg:-right-16 lg:h-80 lg:w-80" aria-hidden="true">
+        <img src="assets/img/chaufa-de-mariscos.webp" alt="" width="1200" height="800" loading="lazy" decoding="async" class="h-full w-full object-cover" />
+      </div>
+
+      <div class="mx-auto max-w-3xl px-5 text-center">
+        <h2 id="ofertas-title" class="font-chunky text-4xl uppercase leading-[0.95] text-white [text-shadow:0_3px_0_#bb0e1b,0_6px_0_#8f0a15] sm:text-5xl lg:text-6xl">Únete y recibe<br />ofertas calientes</h2>
+        <p class="mx-auto mt-5 max-w-md text-sm font-semibold leading-relaxed text-ink/80">Escríbenos por WhatsApp o llámanos y te contamos las promos de la semana. ¡Reserva tu mesa o pide para llevar!</p>
+
+        <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
+          <!-- WhatsApp link is set from the configurable URL in assets/js/main.js -->
+          <a href="#contacto" data-whatsapp class="inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-full bg-blood px-7 py-4 text-xs font-black uppercase tracking-widest text-white shadow-[0_14px_28px_-10px_rgba(187,14,27,0.7)] transition-transform duration-300 hover:scale-105 hover:bg-[#8f0a15] sm:w-auto">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.27-.2-.57-.35M12.05 21.79a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.49-8.41"/></svg>
+            Pedir por WhatsApp
+          </a>
+          <a href="tel:+34918324795" class="inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-xs font-black uppercase tracking-widest text-ink shadow-[0_14px_28px_-12px_rgba(48,22,23,0.45)] transition-transform duration-300 hover:scale-105 sm:w-auto">
+            <svg class="h-4 w-4 text-blood" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Reservar mesa
+          </a>
+          <a href="#carta" class="inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-full border-2 border-ink px-7 py-3.5 text-xs font-black uppercase tracking-widest text-ink transition-colors duration-300 hover:bg-ink hover:text-white sm:w-auto">
+            Ver la carta
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================================
+       H. FOOTER — brown base, gold wave from the offers band, chunky type
+       ===================================================================== -->
+  <footer id="contacto" class="relative isolate overflow-hidden bg-ink text-white">
+    <!-- gold wave continuing the offers band -->
+    <svg class="block h-14 w-full sm:h-20 lg:h-24" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 0H1440V44C1300 110 1160 26 990 52 850 72 800 112 720 104 630 96 590 22 470 40 320 62 170 112 0 56Z" fill="#e8ad21"/>
+    </svg>
+
+    <!-- faint line-art doodles -->
+    <div class="pointer-events-none absolute inset-0 -z-10 select-none text-white" aria-hidden="true">
+      <svg class="absolute -left-6 top-40 h-32 w-32 -rotate-12 opacity-[0.06]" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M10 50h70c0 18-16 30-35 30S10 68 10 50Z"/><path d="M80 52h14"/><path d="M34 40c0-8 6-8 6-16M46 40c0-8 6-8 6-16M58 40c0-8 6-8 6-16"/></svg>
+      <svg class="absolute right-8 top-32 h-28 w-28 rotate-45 opacity-[0.06]" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M30 20c15-5 40 10 35 45-5 20-25 25-30 25s-10-15 0-35c5-15 0-25-5-35Z"/><path d="M65 15c-5-5-10-3-15 3"/></svg>
+    </div>
+
+    <div class="mx-auto max-w-6xl px-5 pt-10 sm:pt-12">
+      <!-- contact cards -->
+      <ul class="grid gap-4 sm:grid-cols-3">
+        <li class="foot-card">
+          <span class="foot-icon"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div>
+            <h3 class="foot-label">Visítanos</h3>
+            <p class="mt-1 text-sm leading-snug text-white/85" data-field="address"><a class="hover:text-gold" href="https://www.google.com/maps/search/?api=1&amp;query=Calle%20Castell%C3%B3n%20de%20la%20Plana%206%2C%2028903%20Getafe%2C%20Madrid" target="_blank" rel="noopener">Calle Castellón de la Plana 6, 28903 Getafe, Madrid</a></p>
+          </div>
+        </li>
+        <li class="foot-card">
+          <span class="foot-icon"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <div>
+            <h3 class="foot-label">Llámanos</h3>
+            <p class="mt-1 text-sm text-white/85" data-field="phone"><a class="hover:text-gold" href="tel:+34918324795">+34 918 32 47 95</a></p>
+          </div>
+        </li>
+        <li class="foot-card">
+          <span class="foot-icon"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+          <div>
+            <h3 class="foot-label">Horario</h3>
+            <p class="mt-1 text-sm text-white/85" data-field="hours">Por confirmar</p>
+          </div>
+        </li>
+      </ul>
+
+      <!-- main grid -->
+      <div class="mt-14 grid gap-12 sm:grid-cols-2 lg:grid-cols-12">
+        <!-- brand -->
+        <div class="lg:col-span-5">
+          <a href="#inicio" class="inline-block transition-transform duration-300 hover:scale-105" aria-label="Q'filo, volver al inicio">
+            <img src="assets/img/logo.png" alt="Q'filo" width="500" height="251" loading="lazy" class="h-16 w-auto sm:h-20" />
+          </a>
+          <p class="mt-5 max-w-xs text-sm leading-relaxed text-white/70">Chifa y cocina criolla peruana en Getafe. El fuego del wok y la sazón de casa en un mismo plato.</p>
+          <ul class="mt-6 flex gap-3">
+            <li><a href="#" class="foot-social" aria-label="Instagram"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a></li>
+            <li><a href="#" class="foot-social" aria-label="Facebook"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a></li>
+            <li><a href="#" class="foot-social" aria-label="TikTok"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a></li>
+          </ul>
+        </div>
+
+        <!-- nav -->
+        <nav class="lg:col-span-3" aria-label="Navegación del pie">
+          <h3 class="font-chunky text-lg uppercase tracking-wide text-gold">Explora</h3>
+          <ul class="mt-4 space-y-2.5 text-sm font-semibold text-white/80">
+            <li><a href="#inicio" class="foot-link">Inicio</a></li>
+            <li><a href="#carta" class="foot-link">Carta</a></li>
+            <li><a href="#por-que" class="foot-link">Nosotros</a></li>
+            <li><a href="#experiencia" class="foot-link">Experiencia</a></li>
+            <li><a href="#ofertas" class="foot-link">Ofertas</a></li>
+          </ul>
+        </nav>
+
+        <!-- order -->
+        <div class="sm:col-span-2 lg:col-span-4">
+          <h3 class="font-chunky text-lg uppercase tracking-wide text-gold">¿Se te antojó?</h3>
+          <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/70">Reserva tu mesa o haz tu pedido. Te esperamos con el wok encendido.</p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="tel:+34918324795" class="inline-flex items-center gap-2 rounded-full bg-blood px-6 py-3 text-xs font-black uppercase tracking-widest text-white transition-colors hover:bg-[#8f0a15]">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Reservar
+            </a>
+            <!-- WhatsApp link is set from the configurable URL in assets/js/main.js -->
+            <a href="#contacto" data-whatsapp class="inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-xs font-black uppercase tracking-widest text-ink transition-colors hover:bg-white">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+              WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- oversized wordmark -->
+    <p class="pointer-events-none mt-12 select-none text-center font-chunky text-[24vw] uppercase leading-[0.8] text-white/[0.04] lg:text-[16rem]" aria-hidden="true">Q'filo</p>
+
+    <div class="border-t border-white/10">
+      <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-5 pb-24 pt-6 text-xs text-white/55 sm:flex-row sm:pb-6">
+        <p>© <span data-year>2026</span> Q'filo · Todos los derechos reservados</p>
+        <p>Hecho con fuego y sazón · <span class="font-bold text-gold">Chifa &amp; criollo</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp button (link set from assets/js/main.js) -->
+  <a id="whatsapp-float" href="#contacto" aria-label="Escríbenos por WhatsApp" data-whatsapp
+     class="group fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_12px_30px_-8px_rgba(37,211,102,0.7)] ring-1 ring-black/10 transition-transform duration-300 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:bottom-7 sm:right-7">
+    <span class="pointer-events-none absolute inset-0 -z-10 animate-ping rounded-full bg-[#25D366] opacity-40" aria-hidden="true"></span>
+    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.982-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.876 1.867 1.867 2.896 4.349 2.896 6.988 0 5.45-4.436 9.884-9.888 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.558 0 11.9-5.335 11.9-11.892 0-3.176-1.24-6.165-3.495-8.414"/></svg>
+  </a>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
